@@ -22,6 +22,8 @@ coverage
 
 *.tsbuildinfo
 
+.gitattributes
+.gitattributes.*
 
 # ------------------------ 의존성 ------------------------
 ## 'npm install'로 다시 설치 가능한 모든 패키지들이 저장되는 폴더

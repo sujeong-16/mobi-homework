@@ -1,6 +1,18 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-// import HelloWorld from './components/HelloWorld.vue'
+import { supabase } from './lib/supabase'
+
+const loginWithGoogle = async () => {
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: 'google',
+  })
+
+  if (error) {
+    console.error('로그인 오류:', error)
+  } else {
+    console.log('로그인 성공! data:', data)
+  }
+}
 </script>
 
 <template>
@@ -11,6 +23,7 @@ import { RouterLink, RouterView } from 'vue-router'
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/homework">homework</RouterLink>
+        <button class="login-btn" @click="loginWithGoogle">구글로그인</button>
       </nav>
     </div>
   </header>
@@ -82,3 +95,6 @@ nav a:first-of-type {
   }
 }
 </style>
+
+<!-- const { data: { user } } = await supabase.auth.getUser()
+console.log(user) -->
